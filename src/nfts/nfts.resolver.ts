@@ -12,7 +12,11 @@ export class NftsResolver {
     @Args('owner') owner: string,
     @Args('network') network: string,
   ) {
+    let args = {
+      owner,
+    } as any;
+
     const provider = this.nftsService.getNetworkSetting(network);
-    return this.nftsService.getNftAll(provider, owner);
+    return this.nftsService.getNftAll(provider, args);
   }
 }

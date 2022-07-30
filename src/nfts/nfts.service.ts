@@ -4,10 +4,9 @@ import { settings } from '../utils/Networks';
 
 @Injectable()
 export class NftsService {
-  async getNftAll(provider, owner: string) {
+  async getNftAll(provider, { owner, contractType, pageKey }) {
     const response = await getNftsForOwner(provider, owner);
-
-    return this.formatData({ owner, ...response });
+    return this.formatData({ owner: owner, ...response });
   }
 
   getNetworkSetting(network: string) {
