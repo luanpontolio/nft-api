@@ -1,14 +1,26 @@
-import { getEndpoint, getNFTByOwner } from '../utils/call';
-import { NftFiltersDto } from './dto/nft-filters.dto';
 import { Injectable } from '@nestjs/common';
+import { initializeAlchemy, getNftsForOwner } from "@alch/alchemy-sdk"
+import { settings } from '../utils/Networks';
 
 @Injectable()
 export class NftsService {
-  async getNftAll(endpoint: string, owner: string) {
-    return await getNFTByOwner(endpoint, owner);
+  async getNftAll(provider, owner: string) {
+    const response = await getNftsForOwner(provider, owner);
+
+    return this.formatData({ owner, ...response });
   }
 
-  static endpoint(network: string): string {
-    return getEndpoint(network);
+  getNetworkSetting(network: string) {
+    if (!settings[network]) throw new Error('Invalid network');
+
+    return initializeAlchemy(settings[network]);
+  }
+
+  private formatData(data) {
+    return {
+      owner: data.owner,
+      nfts: data.ownedNfts,
+      totalCount: data.totalCount,
+    };
   }
 }

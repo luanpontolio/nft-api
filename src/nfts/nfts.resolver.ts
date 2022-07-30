@@ -12,10 +12,7 @@ export class NftsResolver {
     @Args('owner') owner: string,
     @Args('network') network: string,
   ) {
-    // // const endpoint = NftsService.endpoint(network);
-
-    // // if (!endpoint) throw new Error('error é ak');
-    // console.log(endpoint);
-    return this.nftsService.getNftAll(process.env.PROVIDER_URL_ETHEREUMN, owner);
+    const provider = this.nftsService.getNetworkSetting(network);
+    return this.nftsService.getNftAll(provider, owner);
   }
 }
