@@ -11,6 +11,6 @@ export const settings = {
   },
   "polygon": {
     apiKey: process.env.API_KEY_POLYGON,
-    network: Network.ETH_GOERLI,
+    network: Network.MATIC_MUMBAI,
   }
 };
