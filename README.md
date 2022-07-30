@@ -5,7 +5,9 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">
+    NFT gallery API
+  </p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -25,31 +27,34 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[GraphQL](https://github.com/nestjs/graphql) GraphQL (TypeScript) module for Nest framework (node.js) 🍷
+[Alchemy API SDK](https://github.com/alchemyplatform/alchemy-sdk-js) Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently.
 
-## Installation
+## Dependences
+
+- Node 16.14
+- Yarn 1.22.19
+## Installation using Docker
 
 ```bash
-$ npm install
+$ docker compose up --build --force-recreate
 ```
 
-## Running the app
+## Installation with Yarn
 
 ```bash
 # development
-$ npm run start
+$ yarn
 
 # watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ yarn start:dev
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+$ yarn test
 
 # e2e tests
 $ npm run test:e2e
@@ -64,9 +69,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Luan](http://luanpontolio.herokuapp.com)
 
 ## License
 
