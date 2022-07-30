@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { initializeAlchemy, getNftsForOwner } from "@alch/alchemy-sdk"
 import { settings } from '../utils/Networks';
+import { Nfts } from './nfts.model';
 
 @Injectable()
 export class NftsService {
   async getNftAll(provider, { owner, contractType, pageKey }) {
     const response = await getNftsForOwner(provider, owner);
-    return this.formatData({ owner: owner, ...response });
+    return this.formatData(owner, contractType, response);
   }
 
   getNetworkSetting(network: string) {
@@ -15,11 +16,19 @@ export class NftsService {
     return initializeAlchemy(settings[network]);
   }
 
-  private formatData(data) {
+  private formatData(owner, contractType, data) {
+    console.log(data);
+    const nfts = contractType
+      ? data.ownedNfts.filter(value => value.tokenType === contractType)
+      : data.ownedNfts;
+
     return {
-      owner: data.owner,
-      nfts: data.ownedNfts,
-      totalCount: data.totalCount,
-    };
+      owner: owner,
+      ...(Object.keys(nfts).length > 0 ? {
+        nfts: nfts,
+        totalCount: Object.keys(nfts).length,
+        pageKey: data.pageKey,
+      } : {})
+    } as Nfts;
   }
 }

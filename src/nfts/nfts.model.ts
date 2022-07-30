@@ -8,10 +8,12 @@ import {
 export class Nft {
   @Field()
   @IsString()
+  @IsOptional()
   title: string;
 
   @Field()
-  tokenType: string;
+  @IsOptional()
+  tokenType?: string;
 
   @Field(type => String)
   @IsOptional()
@@ -21,19 +23,18 @@ export class Nft {
 @ObjectType()
 export class Nfts {
   @Field()
-  @IsString()
   owner: string;
 
   @Field()
   @IsOptional()
-  totalCount: string;
+  totalCount?: number;
 
-  @Field(type => [Nft])
   @IsOptional()
-  nfts: Nft[];
+  @Field(type => [Nft])
+  nfts?: Nft[];
 
   @Field()
   @IsString()
   @IsOptional()
-  pageKey: string;
+  pageKey?: string;
 }

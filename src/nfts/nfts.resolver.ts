@@ -1,5 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { Resolver, Query, Args } from '@nestjs/graphql';
+import { NftFiltersDto } from './dto/nft-filters.args';
 import { Nfts } from './nfts.model';
 import { NftsService } from './nfts.service';
 
@@ -7,16 +8,28 @@ import { NftsService } from './nfts.service';
 export class NftsResolver {
   constructor(@Inject(NftsService) private nftsService: NftsService) {}
 
-  @Query(returns => Nfts)
+  @Query(returns => Nfts, { nullable: true })
   async nfts(
-    @Args('owner') owner: string,
-    @Args('network') network: string,
+    @Args() args: NftFiltersDto,
   ) {
-    let args = {
+    const {
       owner,
-    } as any;
+      network,
+      contractType,
+      pageKey
+    } = args
+
+    let data = { owner } as any
+
+    if (contractType) {
+      data = { contractType, ...data }
+    }
+
+    if (pageKey) {
+      data = { pageKey, ...data }
+    }
 
     const provider = this.nftsService.getNetworkSetting(network);
-    return this.nftsService.getNftAll(provider, args);
+    return await this.nftsService.getNftAll(provider, data);
   }
 }

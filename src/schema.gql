@@ -4,17 +4,17 @@
 
 type Nft {
   title: String!
-  tokenType: String!
+  tokenType: String
   balance: String!
 }
 
 type Nfts {
   owner: String!
-  totalCount: String!
-  nfts: [Nft!]!
-  pageKey: String!
+  totalCount: Float
+  nfts: [Nft!]
+  pageKey: String
 }
 
 type Query {
-  nfts(owner: String!, network: String!): Nfts!
+  nfts(owner: String!, network: String!, contractType: String, pageKey: String): Nfts
 }
