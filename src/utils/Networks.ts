@@ -1,10 +1,16 @@
-export const NETWORKS = {
-  ethereumn: process.env.PROVIDER_URL_ETHEREUMN,
-  polygon: process.env.PROVIDER_URL_POLYGON
-};
+import { Network } from "@alch/alchemy-sdk"
 
-export const getEndpoint = (
-  type: string
-): [string | undefined] => {
-  return NETWORKS[type];
+export const settings = {
+  "rinkeby": {
+    apiKey: process.env.API_KEY_ETH_RINKEBY,
+    network: Network.ETH_RINKEBY,
+  },
+  "goerli": {
+    apiKey: process.env.API_KEY_ETH_GOERLI,
+    network: Network.ETH_GOERLI,
+  },
+  "polygon": {
+    apiKey: process.env.API_KEY_POLYGON,
+    network: Network.ETH_GOERLI,
+  }
 };

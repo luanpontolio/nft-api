@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Nft {
+  title: String!
+  tokenType: String
+  balance: String!
+}
+
+type Nfts {
+  owner: String!
+  totalCount: Float
+  nfts: [Nft!]
+  pageKey: String
+}
+
+type Query {
+  nfts(owner: String!, network: String!, contractType: String, pageKey: String): Nfts
+}

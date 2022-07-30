@@ -22,11 +22,13 @@
   },
   "dependencies": {
     "@alch/alchemy-sdk": "^1.2.0",
+    "@nestjs/apollo": "^10.0.19",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/graphql": "^10.0.21",
     "@nestjs/platform-express": "^9.0.0",
     "apollo-server-express": "^3.10.0",
+    "class-validator": "^0.13.2",
     "graphql": "^16.5.0",
     "graphql-tools": "^8.3.1",
     "reflect-metadata": "^0.1.13",
