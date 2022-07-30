@@ -1,17 +1,31 @@
+import { Network, initializeAlchemy, getNftsForOwner } from "@alch/alchemy-sdk"
+import { ENDPOINTS } from './Networks';
+import fetch from 'node-fetch';
 
-import { getEndpoint } from './Networks';
+const settings = {
+  apiKey: process.env.API_KEY, // Replace with your Alchemy API Key.
+  network: Network.ETH_RINKEBY, // Replace with your network.
+  maxRetries: 10,
+};
 
-export const getNFT = async (
-  type: string,
+export const getEndpoint = (
+  type: string
+): string | undefined => {
+  return ENDPOINTS[type];
+};
+
+export const getNFTByOwner = async (
+  endpoint: string,
   owner: string,
-  pageKey: number
 ) => {
-  const endpoint = getEndpoint(type);
+  const alchemy = initializeAlchemy(settings);
+  const response = await getNftsForOwner(alchemy, owner);
 
-  if (!endpoint) return;
+  const formatData = {
+    owner,
+    nfts: response.ownedNfts,
+    totalCount: response.totalCount,
+  }
 
-  const data = await fetch(`${endpoint}/getNFTs?owner=${owner}&pageKey=${pageKey}`);
-  const response = await data.json();
-
-  return response;
+  return formatData;
 }
