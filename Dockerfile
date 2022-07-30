@@ -9,11 +9,13 @@ COPY package.json yarn.lock ./
 
 RUN yarn install
 
-COPY nest-cli.js ./nest-cli.js
+COPY nest-cli.json ./nest-cli.json
 COPY .env ./.env
 COPY tsconfig.json ./tsconfig.json
 COPY tsconfig.build.json ./tsconfig.build.json
 
 COPY src ./src
+COPY test ./test
+
 
 CMD [ "yarn", "start:dev" ]
