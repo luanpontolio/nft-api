@@ -25,13 +25,13 @@
 ```bash
 $ mv .env.example .env
 ```
-## Installation using Docker
+## Install using Docker
 
 ```bash
 $ docker compose up --build --force-recreate
 ```
 
-## Installation with Yarn
+## Install with Yarn
 
 ```bash
 # development
