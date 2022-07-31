@@ -30,6 +30,6 @@ export class NftsResolver {
     }
 
     const provider = this.nftsService.getNetworkSetting(network);
-    return await this.nftsService.getNftAll(provider, data);
+    return await this.nftsService.getAllNft(provider, data);
   }
 }
